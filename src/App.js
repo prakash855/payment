@@ -1,5 +1,5 @@
 import "./App.css";
-import { IonButton, IonRouterLink } from "@ionic/react";
+import { IonButton } from "@ionic/react";
 import { Component } from "react";
 import '@ionic/react/css/core.css';
 
@@ -68,8 +68,8 @@ class App extends Component {
         <IonButton onClick={this.displayRazorpay} className="book-consultation">
           PAY {this.state.consultationFee}
         </IonButton>
-        <IonButton href='https://web.whatsapp.com'>whatsapp</IonButton>
-        <ion-icon ios="logo-whatsapp" md="logo-whatsapp"></ion-icon>
+        {/* <IonButton href='https://web.whatsapp.com'>whatsapp</IonButton> */}
+        {/* <ion-icon ios="logo-whatsapp" md="logo-whatsapp"></ion-icon> */}
       </div>
     );
   }
