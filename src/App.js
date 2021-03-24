@@ -31,10 +31,10 @@ class App extends Component {
       showToast: false,
       doctorName: "Jamie Anderson",
       bookingDate: "27-01-2021",
-      consultationFee: "50000",
+      consultationFee: "",
       reason: "Tooth Pain",
     };
-    console.log(this.props)
+    console.log(this.props);
   }
   displayRazorpay = async () => {
     const res = await loadScript(
@@ -65,12 +65,30 @@ class App extends Component {
     paymentObject.open();
   };
 
+  parameters = (val) => {
+    console.log(
+      `the value of amout entered is ${val.get("amount")}, number ${val.get(
+        "number"
+      )} and email is ${val.get("email")}`
+    );
+    this.setState(pre=>{
+      pre.consultationFee = val.get('amount')
+    })
+  };
+
+  // sendParameters=(val)=>
+  // {
+  //   this.setState(pre=>{
+  //     console.log(pre)
+  //   })
+  // }
   render() {
     return (
       <Router>
         <div className="App">
           <Switch>
             <Route exact path="/">
+              {console.log(this.state)}
               <IonButton
                 onClick={this.displayRazorpay}
                 className="book-consultation"
@@ -79,8 +97,13 @@ class App extends Component {
                 {/* {JSON.stringify(this.props)} */}
               </IonButton>
             </Route>
-            {/* <Route path="/pay" component={Payment}></Route> */}
-            <Route path='/pay'><Payment fun={this.displayRazorpay} /></Route>
+            {/* <Route path="/pay" component={<Payment sendParameters={this.sendParameters}/>}></Route> */}
+            <Route path="/pay">
+              <Payment
+                method={this.displayRazorpay}
+                parameters={this.parameters}
+              />
+            </Route>
           </Switch>
         </div>
       </Router>
