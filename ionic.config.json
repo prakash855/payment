@@ -1,0 +1,7 @@
+{
+  "name": "PaymentIntegration",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
